@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+  </head>
+  <body>
+    <nav id="navbar">
+        <a href="{{ url_for('index') }}" class="logo">F1 <span class="yellow">Rush</span></a>
+      <ul class="menu" id="menu">
+            <li><a {% if request.path == '/drivers' %}class="link-active"{% endif %} href="{{ url_for('drivers') }}">Drivers</a></li>
+            <li><a {% if request.path == '/ranking' %}class="link-active"{% endif %} href="{{ url_for('rankings') }}">Rankings</a></li>
+            <li><a {% if request.path == '/races' %}class="link-active"{% endif %} href="{{ url_for('races') }}">Races</a></li>
+      </ul>
+    
+      <div class="menu_btn" id="menu_btn">
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <footer class="footer">
+        <p>Developed by Emanuele</p>
+        <a href="http://ergast.com/mrd">Ergast API</a>
+    </footer>
+  </body>
+</html>

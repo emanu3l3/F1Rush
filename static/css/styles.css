@@ -1,0 +1,955 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+li {
+  list-style: none;
+}
+
+table{
+  border-collapse: collapse;
+  color: #fff;
+  padding-bottom: 1rem;
+}
+
+th{
+  border: 1px solid rgb(207, 245, 36);
+  border-top: none;
+  border-left: none;
+  padding: 0.5rem 0;
+  font-family: f1-bold;  
+  font-size: 1.5rem;
+}
+
+th:last-child{
+  border-right: none;
+}
+
+td {
+  border-right: 1px solid rgb(207, 245, 36);
+  padding: 0.5rem 1rem;
+  font-family: f1;
+  font-size: 1.2rem;
+}
+
+td:last-child{
+  border-right: none;
+}
+
+tr{
+  border-bottom: 1px solid rgb(207, 245, 36);
+}
+
+tr:last-child{
+  border-bottom: none;
+}
+
+.table-title{
+  font-size: 1.8rem;
+  font-family: f1-bold;
+  padding: 0.5rem 0;
+  border: 2px solid rgb(207, 245, 36);
+  border-top: none;
+  border-left: none;
+}
+
+.footer {
+  font-family: f1;
+  display: flex;
+  width: 100%;
+  height: 5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: #fff;
+}
+
+.footer > a{
+  padding-top: 1rem;
+  border-bottom: 1px solid white;
+}
+
+.error{
+  font-family: f1;
+  position: absolute;
+  top: 10rem;
+  left: 10rem;
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.error-rank{
+  font-family: f1;
+  position: absolute;
+  top: 18rem;
+  left: 15%;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.error-races{
+  font-family: f1;
+  position: absolute;
+  top: 18rem;
+  left: 15%;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.error-drivers{
+  font-family: f1;
+  position: absolute;
+  top: 18rem;
+  left: 15%;
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+
+.link-active {
+  color:rgb(207, 245, 36);
+}
+
+::-webkit-scrollbar{
+  width: 10px;
+} 
+
+::-webkit-scrollbar-track{
+  background-color: #1d1d1d;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: #333;
+}
+
+.yellow{
+  color: #fff200;
+}
+
+@font-face {
+  font-family: "f1";
+  src: url("../fonts/Formula1-Regular_web_0.woff");
+}
+
+@font-face {
+  font-family: "f1-bold";
+  src: url("../fonts/Formula1-Bold_web_0.woff");
+}
+
+@media (max-width: 600px){
+  .error-driver{
+    left: 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .error-rank{
+    left: 5%;
+  }
+  
+  .error-races{
+    left: 5%;
+  }
+  
+  .error-drivers{
+    left: 5%;
+  }
+}
+
+@media (min-width: 760px){
+  .race-table-name{
+    display: none;
+  }
+}
+
+@media (max-width: 760px){
+  table{
+    width: 95%;
+    margin: auto;
+    margin-top: 1rem;
+  }
+
+  thead{
+    display: none;
+  }
+
+  tr{
+    display: block;
+    border: 1px solid #fff200;
+    margin-bottom: 1rem;
+    background: #62616192;
+  }
+
+  td{
+    display: block;
+    text-align: right;
+    border: none;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  tr:last-child{
+    border-bottom: 1px solid rgb(207, 245, 36);
+  }
+}
+
+/* ----------------------------- 
+              NAV 
+---------------------------------*/
+
+nav {
+  z-index: 1;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  background: #000;
+
+}
+
+.logo {
+  margin-left: 6rem;
+  font-family: f1-bold;
+  color: #fff;
+}
+
+.menu {
+  display: flex;
+  padding: 20px;
+  margin-right: 10rem;
+}
+
+.menu > li {
+  padding: 20px;
+  cursor: pointer;
+}
+
+.menu > li:hover {
+  background-color: #e4e1e131;
+  border-radius: 15px;
+  transition: 0.2s ease-in-out;
+}
+
+.menu > li > a {
+  font-family: f1;
+}
+
+.menu_btn {
+  display: block;
+  float: right;
+  padding: 0px 25px;
+  display: none;
+  cursor: pointer;
+}
+
+.menu_btn span {
+  display: block;
+  height: 3px;
+  width: 25px;
+  background: #fff;
+  margin-bottom: 5px;
+}
+
+/* -----------------------------
+            Query Nav
+------------------------------- */
+
+@media (max-width: 600px) {
+  nav {
+    width: 100%;
+    height: 60px;
+  }
+
+  .logo {
+    margin-left: 4rem;
+  }
+
+  .menu {
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 65%;
+    background-color: #111111fa;
+    padding-top: 125px;
+    justify-content: center;
+    left: -100%;
+    transition: 0.5s ease-in-out;
+    opacity: 1;
+    z-index: 100;
+  }
+
+  .menu_btn {
+    display: block;
+  }
+
+  .menu.active {
+    left: 0;
+    z-index: 81;
+  }
+}
+
+/* --------------------------
+            MAIN
+--------------------------------*/
+
+.main {
+  font-family: f1;
+  position: relative;
+  height: auto;
+  /* border: 1px solid red; */
+  background: url(../images/bg-main.png) no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  padding-bottom: 1rem;
+}
+
+.subtitle {
+  color: #fff;
+  text-align: center;
+  font-size: 4rem;
+  padding-top: 3rem;
+}
+
+.race-info {
+  color: #fff;
+  /* background-color: #d6d6d648; */
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: auto;
+  margin-top: 2rem; 
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  border: 2px solid white;
+  backdrop-filter: brightness(40%);
+}
+
+.race-name{
+  font-size: 2.5rem;
+}
+
+.race-date{
+  font-size: 1.5rem;
+}
+
+.circuit-img{
+  width: 25rem;
+  height: auto;
+  transition: 400ms;
+  filter: invert(1);
+  cursor: pointer;
+}
+
+.circuit-img:hover{
+  transform: translate(-0px, -10px) scale(1.1);
+}
+
+.circuit-name {
+  font-size: 1.6rem;
+}
+
+.circuit-local{
+  font-size: 1.6rem;
+}
+
+.next-races{
+  position: relative;
+  z-index: 2;
+  margin: auto;
+  margin-top: 1rem;
+  width: 80%;
+  height: 20rem;
+  outline: 2px solid #fff200;
+  display: flex;
+  justify-content: space-around;
+  background-color: #545454d4;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+}
+
+.race{
+  color: #fff;
+  width: 26rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 2rem;
+}
+
+.race-name2{
+  font-family: f1-bold;
+  font-size: 1.5rem;
+}
+
+.race-date2{
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+}
+
+.circuit-img2{
+  width: 12rem;
+  height: auto;
+  transition: 400ms;
+  cursor: pointer;
+  filter: invert(1)
+}
+
+.circuit-img2:hover{
+  transform: translate(-0px, -10px) scale(1.4);
+}
+
+/* ----------------------------------
+            Query Main
+------------------------------------ */
+
+@media (max-width: 600px) {
+  .main {
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    background-position: center center;
+  }
+
+  .race-info{
+    width: 90%  
+  }
+
+  .subtitle {
+    color: #fff;
+    font-size: 2.5rem;
+  }
+
+  .race-name{
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .race-date{
+    letter-spacing: 2px;
+  }
+
+  .circuit-name{
+    font-size: 1.3rem;
+  }
+
+  .circuit-img{
+    width: 100%;
+  }
+
+  .circuit-local{
+    font-size: 1.4rem;
+  }
+
+  .next-races{
+    outline: none;
+    width: 90%;
+    height: auto;
+    margin-top: 2rem;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    overflow: none;
+  }
+
+  .race{
+    width: 100%;
+    height: auto;
+    border: 1px solid #fff;
+    padding-bottom: 2rem;
+    background-color: #54545461;
+  }
+
+}
+
+/* ------------------------------ 
+              DRIVERS 
+-------------------------------------*/
+
+.container-drivers{
+  z-index: 99;
+  width: 100%;
+  min-height: 100vh;
+  background: #121212;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  gap: 1rem;
+}
+
+.drivers-header{
+  z-index: 5;
+  width: 90%;
+  height: auto;
+  display: flex;
+  justify-content: start;
+  gap: 3rem;
+  align-items: center;
+  font-family: f1;
+  margin-left: 5%;
+}
+
+.drivers-header > h1 {
+  color: #fff;
+}
+
+.drivers-header > form{
+  display: flex;
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.drivers-header > form > input[type="number"]{
+  width: 9rem;
+  height: 3rem;
+  font-family: f1;
+  font-size: 1rem;
+  color: #fff200;
+  background-color: #000;
+  border: 2px solid #fff200;
+  padding-left: 1.2rem;
+  border-radius: 5px;
+}
+
+.drivers-header > form > input[type="submit"]{
+  color: #fff200;
+  border-color: #fff200;
+  background: transparent;
+  cursor: pointer;
+  font-family: f1;
+  font-size: 1rem;
+  width: 6rem;
+  height: 3rem;
+  border-radius: 5px;
+}
+
+/* .search-pilots{  
+  font-family: f1;
+  font-size: 1rem;
+  color: #fff200;
+  border: 2px solid #fff200;
+  width: 25rem;
+  height: 3rem;
+  padding-left: 3rem;
+  border-radius: 100px;
+  background-color: #000;
+}
+
+.search-pilots::placeholder{
+  color: #fff200;
+} */
+
+.drivers-cards{
+  width: 90%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3.5rem;
+  padding-top: 2rem;
+}
+
+.driver-card{
+  z-index: 3;
+  font-family: f1;
+  font-size: 1.2rem;
+  width: 18rem;
+  height: auto;
+  outline: 2px solid rgb(207, 245, 36);
+  border-radius: 15px;
+  background: #282828b0;
+}
+
+.img-container{
+  margin: auto;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 20rem;
+}
+
+.drivers-img-link{
+  width: 100%;
+  height: 100%;
+}
+
+.drivers-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 400ms;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.drivers-img:hover{
+  transform: translate(-0px, -10px) scale(1.1);
+}
+
+.driver-card > hr {
+  margin-top: 0.2rem;
+}
+
+.driver-card > h3,
+.driver-card > p {
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+
+@media (max-width: 600px) {
+  .container-drivers{
+    width: 100%;
+  }
+
+  .drivers-header{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .drivers-header > h1{
+    font-size: 2rem;
+  }
+
+  .drivers-header > form{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .drivers-cards{
+    justify-content: center;
+  }
+}
+
+/* ------------------------------ 
+              RANK
+-------------------------------------*/
+
+.container-rank {
+  width: 100%;
+  min-height: 90vh;
+  padding-top: 2.5rem;
+  padding-bottom: 1rem;
+  z-index: 88;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)),
+    url(../images/bg-ranking.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+.rank-header{
+  display: flex;
+  gap: 2rem;
+}
+
+.rank-header{
+  z-index: 1;
+  color: #fff;
+  font-family: f1-bold;
+  margin-left: 15%;
+}
+
+.rank-header > form{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rank-header > form > input[type="number"]{
+  width: 9rem;
+  height: 3rem;
+  font-family: f1;
+  font-size: 1rem;
+  color: #fff200;
+  background-color: #000;
+  border: 2px solid #fff200;
+  padding-left: 1.2rem;
+  border-radius: 5px;
+}
+
+.rank-header > form > input[type="submit"]{
+  color: #fff200;
+  border-color: #fff200;
+  background: transparent;
+  cursor: pointer;
+  font-family: f1;
+  font-size: 1rem;
+  width: 6rem;
+  height: 3rem;
+  border-radius: 5px;
+}
+
+.rank-table{
+  width: 70%;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px){
+  .container-rank{
+    padding-top: 1.5rem;
+    height: 90vh;
+    overflow-y: scroll;
+  }
+
+  .rank-header{
+    padding-top: 0;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 0.8rem;
+  }
+
+  .rank-header > h1{
+    align-self: center;
+  }
+
+  .rank-header > form{
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .rank-table{
+    width: 95%;
+  }
+
+}
+
+
+/* ------------------------------ 
+              DRIVER
+-------------------------------------*/
+
+.driver-container{
+  font-family: f1;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  color: #fff;
+  width: 100%;
+  min-height: 85vh;
+  /* outline: 1px solid red; */
+  background-color: #222;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)),
+    url(../images/bg-driver.jpg) no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 0.8 black;
+}
+
+.driver-container > h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+
+.driver-information{
+  width: 60%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  gap: 9rem;
+  margin: auto;
+  margin-top: 2rem;
+  letter-spacing: 1.5px;
+}
+
+.driver-img{
+  height: 25rem;
+  border-radius: 15px;
+  border: 2px solid #fff200;
+}
+
+.driver-img > img{
+  border-radius: 15px;
+  height: 100%;
+}
+
+.driver-info{
+  width: auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 1.5rem;
+}
+
+.driver-table{
+  width: 70%;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  .driver-container{
+    padding-top: 1rem;
+    width: 100%;
+    height: auto;
+  }
+
+  .driver-information{
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+    gap: 0;
+  }
+
+  .driver-info{
+    margin-top: 0.5rem;
+    width: 22rem;
+    align-self: start;
+  }
+
+  .driver-img{
+    height: auto;
+  }
+
+  .driver-table{
+    width: 95%;
+  }
+
+  .error{
+    margin-left: 3rem;
+  }
+}
+
+/* ------------------------------ 
+              RACE
+-------------------------------------*/
+
+.container-races{
+  font-family: f1;
+  color: #fff;
+  width: 100%;
+  min-height: 90vh;
+  background-color: #121212;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.races-header{
+  width: 40rem;
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  margin-left: 15%;
+}
+
+.races-header > form{
+  display: flex;
+  gap: 2rem;
+}
+
+.races-header > form > select{
+  width: auto;
+  height: 3rem;
+  font-family: f1;
+  font-size: 1rem;
+  color: #fff200;
+  background-color: #000;
+  border: 2px solid #fff200;
+  padding-left: 1.2rem;
+  border-radius: 5px;
+}
+
+.races-header > form > input[type="submit"]{
+  color: #fff200;
+  border-color: #fff200;
+  background: transparent;
+  cursor: pointer;
+  font-family: f1;
+  font-size: 1rem;
+  width: 6rem;
+  height: 3rem;
+  border-radius: 5px;
+}
+
+.races-table{
+  width: 70%;
+  margin: auto;
+  margin-top: 3rem;
+}
+
+.race-table-name{
+  text-align: center;
+}
+
+@media (max-width: 600px){
+  
+  .races-container{
+    padding-top: 1rem;
+    overflow-x: scroll;
+  }
+
+  .races-header{
+    flex-direction: column;
+    width: auto;
+    margin: auto;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .races-header > form{
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .races-table{
+    width: 90%;
+  }
+}
+
+/* ------------------------------ 
+              404
+---------------------------------*/
+
+.container-404{
+  width: 100%;
+  min-height: 85vh;
+  font-family: f1;
+  background-color: #121212;
+}
+
+.container-404 > h1{
+  text-align: center;
+  padding-top: 12rem;
+  font-size: 10rem;
+  color: #fff200;
+}
+
+.container-404 > h2{
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #fff;
+}
+@media (max-width: 600px){
+  .container-404 > h1{
+    font-size: 8rem;
+  }
+}

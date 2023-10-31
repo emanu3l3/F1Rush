@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}F1 - Rank{% endblock %}
+
+{% block content %}
+<div class="container-rank">
+    <div class="rank-header">
+        <h1>Ranking</h1>
+        <form action="{{ url_for('rankings') }}" method="GET">
+            <input type="number" min="1950" max="2023" step="1" value="{{ year }}" name="year">
+            <input type="submit" value="search"/>
+        </form>
+    </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="error-rank">{{ message }}</p>
+            {% endfor %}
+        {% else %}
+        <table class="rank-table">
+            <thead>
+                <tr>
+                    <th class="rank-table-year" colspan="4">Ranking of {{ year }}</th>
+                </tr>
+                <tr>
+                    <th scope="col">POS</th>
+                    <th scope="col">NAME</th>
+                    <th scope="col">TEAM</th>
+                    <th scope="col">POINTS
+                </tr>
+            </thead>
+            <tbody>
+            {% for driver in ranking %}
+                <tr>
+                    <td data-label="POS">{{driver.get("position")}}</td>
+                    <td data-label="NAME">{{driver.get("driver_name")}} {{driver.get("driver_surname")}}</td>
+                    <td data-label="TEAM">{{driver.get("team")}}</td>
+                    <td data-label="POINTS">{{driver.get("points")}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        </table>
+        {% endif %}
+    {% endwith %}    
+</div>
+{% endblock %}

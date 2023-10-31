@@ -1,0 +1,72 @@
+{% extends "base.html" %} 
+
+{% block title %}F1 - Races{% endblock %}
+
+{% block content %}
+<div class="container-races">
+    <div class="races-header">
+        <h1>Race</h1>
+        <form action="{{ url_for('races') }}" method="GET">
+            <select name="round">
+                {% for _, races_value in prev_races.items() %}
+                    {% for key, value in races_value.items() %}
+                        <option value="{{key}}">{{value}}</option>
+                    {% endfor %}
+                {% endfor %}
+            </select>
+            <input type="submit" value="search"/>
+        </form>
+    </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="error-races">{{ message }}</p>
+            {% endfor %}
+        {% else %}
+            <table class="races-table">
+                <thead>
+                    <tr class="table-title-tr">
+                        {% set round = request.args.get("round", "1") %}
+                        {% if round in prev_races %}
+                            {% for _, race_name in prev_races.get(round).items() %}
+                                {% set race_name = race_name %}
+                                <th class="table-title" colspan="7">{{race_name}}</th>
+                            {% endfor %}
+                        {% endif %}
+                    </tr>
+                    <tr class="table-menu">
+                        <th scope="col">POS</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">POINTS</th>
+                        <th scope="col">GRID</th>
+                        <th scope="col">LAPS</th>
+                        <th scope="col">STATUS</th>
+                        <th scope="col">MAX SPEED</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if round in prev_races %}
+                        {% for _, race_name in prev_races.get(round).items() %}
+                            {% set race_name = race_name %}
+                            <tr>
+                                <td class="race-table-name">{{race_name}}</th>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    {% for result in race_results %}
+                        <tr class="race-tr">
+                            <td data-label="POS">{{result.get("position")}}</td>
+                            <td data-label="NAME">{{result.get("driver_name")}} {{result.get("driver_surname")}}</td>
+                            <td data-label="POINTS">{{result.get("points")}}</td>
+                            <td data-label="GRID">{{result.get("grid")}}</td>
+                            <td data-label="LAPS">{{result.get("laps")}}</td>
+                            <td data-label="STATUS">{{result.get("status")}}</td>
+                            <td data-label="M. SPEED">{{result.get("a_speed")}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}

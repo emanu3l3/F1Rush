@@ -1,0 +1,53 @@
+{% extends "base.html" %} 
+
+{% block title %}F1 - {{driver_info.get("givenName", "")}} {{ driver_info.get("familyName", "") }}{% endblock %}
+
+{% block content %}
+<div class="driver-container">
+    {% with messages = get_flashed_messages() %}
+		{% if messages %}
+			{% for message in messages %}
+				<p class="error-driver">{{ message }}</p>	
+			{% endfor %}
+        {% else %}
+            <h1>{{ driver_info.get("givenName") }} {{ driver_info.get("familyName") }}</h1>
+            <div class="driver-information">
+                <div class="driver-img">
+                    <img src="{{ driver_info.get('url') }}" alt="IMMAGINE">
+                </div>
+                <div class="driver-info">
+                    <p><span class="yellow">Number:</span> {{ driver_info.get("permanentNumber", " ") }}</p>
+                    <p><span class="yellow">Date of Birth:</span> {{ driver_info.get("dateOfBirth") }}</p>
+                    <p><span class="yellow">Nationality:</span> {{ driver_info.get("nationality") }}</p>
+                </div>
+            </div>
+            <table class="driver-table">
+                <thead>
+                    <tr>
+                        <th class="table-title" colspan="5">Seasons Results</th>
+                    </tr>
+                    <tr>
+                        <th scope="col">SEASON</th>
+                        <th scope="col">POS</th>
+                        <th scope="col">POINTS</th>
+                        <th scope="col">WINS</th>
+                        <th scope="col">TEAM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in driver_ranking %}
+                        <tr>
+                            <td data-label="SEASON">{{result.get("season")}}</td>
+                            <td data-label="POS">{{result.get("position")}}</td>
+                            <td data-label="POINTS">{{result.get("points")}}</td>
+                            <td data-label="WINS">{{result.get("wins")}}</td>
+                            <td data-label="TEAM">{{result.get("team")}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+		{% endif %}
+	{% endwith %}
+</div>
+{% endblock %}
